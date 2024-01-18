@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 
 namespace PV321_CSharp
 {
-
-
-    internal class Matrix
+    public interface ICalc
+    {
+        public int Less(int valueToCompare);
+        public int Greater(int valueToCompare);
+    }
+    public interface IOutput
+    {
+        public void ShowEven();
+        public void ShowOdd();
+    }
+    internal class Matrix:ICalc, IOutput
     {
 
         int[,] array;
@@ -34,16 +42,64 @@ namespace PV321_CSharp
             }
         }
 
-        public int this[int r, int c]
+        public int Less(int valueToCompare)
         {
-            get { return array[r,c];  }
-            set { array[r,c] = value; }
+            int count = 0;
+            for (int i=0;i<Rows;++i)
+            {
+                for (int j= 0; j < Cols; ++j)
+                {
+                    if (array[i, j] <= valueToCompare)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
         }
 
-        public int Method()
+        public int Greater(int valueToCompare)
         {
-
+            int count = 0;
+            for (int i = 0; i < Rows; ++i)
+            {
+                for (int j = 0; j < Cols; ++j)
+                {
+                    if (array[i, j] >= valueToCompare)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
         }
-
+        public void ShowEven()
+        {
+            for (int i = 0; i < Rows; ++i)
+            {
+                for (int j = 0; j < Cols; ++j)
+                {
+                    if (array[i, j] %2== 0)
+                    {
+                        Console.Write($"{array[i, j]} ");
+                    }
+                }
+            }
+            Console.WriteLine();
+        }
+        public void ShowOdd()
+        {
+            for (int i = 0; i < Rows; ++i)
+            {
+                for (int j = 0; j < Cols; ++j)
+                {
+                    if (array[i, j] % 2 != 0)
+                    {
+                        Console.Write($"{array[i, j]} ");
+                    }
+                }
+            }
+            Console.WriteLine();
+        }
     }
 }
