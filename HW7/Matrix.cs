@@ -10,6 +10,8 @@ namespace PV321_CSharp
     {
         public int Less(int valueToCompare);
         public int Greater(int valueToCompare);
+        public int CountDistinct();
+        public int EqualToValue(int valueToCompare);
     }
     public interface IOutput
     {
@@ -100,6 +102,53 @@ namespace PV321_CSharp
                 }
             }
             Console.WriteLine();
+        }
+        public int CountDistinct()
+        {
+            int distinctCount = 0;
+
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Cols; j++)
+                {
+                    if (IsDistinct(array, i, j))
+                    {
+                        distinctCount++;
+                    }
+                }
+            }
+
+            return distinctCount;
+        }
+
+        private bool IsDistinct(int[,] matrix, int row, int col)
+        {
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    if (matrix[i, j] == matrix[row, col])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        public int EqualToValue(int valueToCompare)
+        {
+            int count = 0;
+            for (int i = 0; i < Rows; ++i)
+            {
+                for (int j = 0; j < Cols; ++j)
+                {
+                    if (array[i, j] == valueToCompare)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
         }
     }
 }
