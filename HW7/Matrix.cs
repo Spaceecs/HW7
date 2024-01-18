@@ -39,7 +39,7 @@ namespace PV321_CSharp
             {
                 for(int j = 0; j < Cols; j++)
                 {
-                    array[i,j] = r.Next(0, 255);
+                    array[i,j] = r.Next(0, 10);
                 }
             }
         }
